@@ -31,15 +31,11 @@
     <a href="/" class="flex items-center gap-2 no-underline shrink-0">
       <div
         class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
-        style="background: #0066FF; box-shadow: 0 0 14px rgba(0,102,255,0.45);"
-      >
-        <span class="text-white font-black text-xs">N</span>
+        style="background: #0066FF; box-shadow: 0 0 14px rgba(0,102,255,0.45);">
+        <span class="text-white font-black text-xs">A</span>
       </div>
-      <span
-        class="font-bold text-sm tracking-tight"
-        style="color: #e8eaf0;"
-      >
-        Nexus
+      <span class="font-bold text-sm tracking-tight" style="color: #e8eaf0;">
+        Astroblox
       </span>
     </a>
 
@@ -58,10 +54,8 @@
             "
           >
             {#if activeItem === item}
-              <span
-                class="absolute inset-0 rounded-full"
-                style="border: 1px solid rgba(0,102,255,0.3);"
-              ></span>
+              <span class="absolute inset-0 rounded-full"
+                style="border: 1px solid rgba(0,102,255,0.3);"></span>
             {/if}
             {item}
           </button>
@@ -71,35 +65,18 @@
 
     <!-- RIGHT — CTA buttons -->
     <div class="flex items-center gap-2 shrink-0">
-      <a
-        href="/login"
-        class="px-4 py-1.5 rounded-full text-sm font-medium no-underline
-               transition-all duration-200"
+      <a href="/login"
+        class="px-4 py-1.5 rounded-full text-sm font-medium no-underline transition-all duration-200"
         style="color: #9ca3af; background: transparent;"
         onmouseenter={(e) => e.currentTarget.style.color = '#e8eaf0'}
-        onmouseleave={(e) => e.currentTarget.style.color = '#9ca3af'}
-      >
+        onmouseleave={(e) => e.currentTarget.style.color = '#9ca3af'}>
         Log in
       </a>
-
-      <a
-        href="/register"
-        class="px-4 py-1.5 rounded-full text-sm font-semibold no-underline
-               transition-all duration-200"
-        style="
-          background: #0066FF;
-          color: #fff;
-          box-shadow: 0 0 16px rgba(0,102,255,0.35);
-        "
-        onmouseenter={(e) => {
-          e.currentTarget.style.background = '#1a7aff';
-          e.currentTarget.style.boxShadow = '0 0 22px rgba(0,102,255,0.55)';
-        }}
-        onmouseleave={(e) => {
-          e.currentTarget.style.background = '#0066FF';
-          e.currentTarget.style.boxShadow = '0 0 16px rgba(0,102,255,0.35)';
-        }}
-      >
+      <a href="/register"
+        class="px-4 py-1.5 rounded-full text-sm font-semibold no-underline transition-all duration-200"
+        style="background: #0066FF; color: #fff; box-shadow: 0 0 16px rgba(0,102,255,0.35);"
+        onmouseenter={(e) => { e.currentTarget.style.background='#1a7aff'; e.currentTarget.style.boxShadow='0 0 22px rgba(0,102,255,0.55)'; }}
+        onmouseleave={(e) => { e.currentTarget.style.background='#0066FF'; e.currentTarget.style.boxShadow='0 0 16px rgba(0,102,255,0.35)'; }}>
         Get started
       </a>
     </div>

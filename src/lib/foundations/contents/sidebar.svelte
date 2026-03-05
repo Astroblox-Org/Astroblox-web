@@ -13,7 +13,6 @@
       scrollProgress = docHeight > 0 ? scrollTop / docHeight : 0;
       activeDot = Math.min(DOTS - 1, Math.floor(scrollProgress * DOTS));
     };
-
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   });
