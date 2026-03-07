@@ -1,10 +1,13 @@
 <script>
+// @ts-nocheck
+
   import { onMount } from 'svelte';
 
   let scrollProgress = 0;
   let activeDot = 0;
 
   const DOTS = 6;
+  const dots = Array.from({ length: DOTS }, (_, i) => i);
 
   onMount(() => {
     const onScroll = () => {
@@ -17,21 +20,43 @@
     return () => window.removeEventListener('scroll', onScroll);
   });
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
   const scrollToSection = (index) => {
     const target = (index / (DOTS - 1)) * (document.documentElement.scrollHeight - window.innerHeight);
     window.scrollTo({ top: target, behavior: 'smooth' });
   };
 </script>
 
-<aside class="fixed left-4 top-0 h-screen z-50 flex flex-col items-center justify-center gap-3">
-  {#each Array(DOTS) as _, i (i)}
+<aside class="fixed left-5 top-0 h-screen z-50 flex flex-col items-center justify-center gap-4">
+  {#each dots as i (i)}
     <button
       on:click={() => scrollToSection(i)}
       aria-label="Scroll to section {i + 1}"
-      class="transition-all duration-300 rounded-sm cursor-pointer border-0 p-0 {activeDot === i ? 'w-2.5 h-2.5 rotate-45' : 'w-1.5 h-1.5'}"
-      style="background: {activeDot === i ? 'rgba(255,255,255,0.4)' : '#2a2d35'}; box-shadow: {activeDot === i ? '0 0 8px rgba(255,255,255,0.2)' : 'none'}; outline: none;"
+      class="dot-btn transition-all duration-300 cursor-pointer border-0 p-0"
+      class:dot-active={activeDot === i}
+      style="outline: none;"
     ></button>
   {/each}
 </aside>
+
+<style>
+  .dot-btn {
+    width: 6px;
+    height: 6px;
+    background: #2a2d35;
+    border-radius: 1px;
+    transform: rotate(0deg);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: none;
+  }
+  .dot-btn:hover {
+    background: #4b5263;
+    transform: rotate(45deg);
+  }
+  .dot-active {
+    width: 8px;
+    height: 8px;
+    background: #0066FF;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(0, 102, 255, 0.6);
+  }
+</style>

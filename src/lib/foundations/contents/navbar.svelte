@@ -21,7 +21,8 @@
 
     <!-- logo -->
     <div class="flex items-center gap-2 shrink-0">
-      <div class="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.12);">
+      <div class="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
+        style="background: #0066FF; box-shadow: 0 0 12px rgba(0,102,255,0.5); border: 1px solid rgba(0,102,255,0.4);">
         <span class="text-white font-black text-xs">A</span>
       </div>
       <span class="font-semibold text-sm tracking-tight" style="color: #c9cdd6;">Astroblox</span>
@@ -34,10 +35,11 @@
           <button
             on:click={() => activeItem = item}
             class="relative px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border-0 cursor-pointer outline-none"
-            style="background: {activeItem === item ? 'rgba(255,255,255,0.07)' : 'transparent'}; color: {activeItem === item ? '#d1d5db' : '#4b5260'};"
+            style="background: {activeItem === item ? 'rgba(0,102,255,0.15)' : 'transparent'}; color: {activeItem === item ? '#6ea8fe' : '#4b5260'};"
           >
             {#if activeItem === item}
-              <span class="absolute inset-0 rounded-full pointer-events-none" style="border: 1px solid rgba(255,255,255,0.1);"></span>
+              <span class="absolute inset-0 rounded-full pointer-events-none"
+                style="border: 1px solid rgba(0,102,255,0.35);"></span>
             {/if}
             {item}
           </button>
@@ -70,14 +72,15 @@
     color: #9ca3af;
   }
   .register-btn {
-    background: rgba(255, 255, 255, 0.08);
-    color: #c9cdd6;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #0066FF;
+    color: #fff;
+    border: 1px solid rgba(0,102,255,0.4);
     cursor: pointer;
     transition: all 0.2s;
+    box-shadow: 0 0 14px rgba(0,102,255,0.35);
   }
   .register-btn:hover {
-    background: rgba(255, 255, 255, 0.13);
-    border-color: rgba(255, 255, 255, 0.18);
+    background: #1a74ff;
+    box-shadow: 0 0 22px rgba(0,102,255,0.55);
   }
 </style>

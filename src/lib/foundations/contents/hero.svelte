@@ -19,8 +19,27 @@
     class="absolute inset-0 pointer-events-none transition-opacity duration-1000"
     class:opacity-0={phase !== 2}
     class:opacity-100={phase === 2}
-    style="background: radial-gradient(ellipse 65% 45% at 50% 38%, rgba(255,255,255,0.04) 0%, transparent 70%);"
+    style="background: radial-gradient(ellipse 70% 50% at 50% 30%, rgba(0,102,255,0.13) 0%, transparent 70%);"
   ></div>
+
+  <!-- faint arc line -->
+  <div
+    class="absolute inset-0 pointer-events-none transition-opacity duration-1000"
+    class:opacity-0={phase !== 2}
+    class:opacity-100={phase === 2}
+  >
+    <svg class="absolute w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M -100 600 Q 400 200 720 500 Q 1040 800 1540 400"
+        stroke="rgba(255,255,255,0.05)"
+        stroke-width="1"
+        stroke-dasharray="6 10"
+        fill="none"
+      />
+      <circle cx="720" cy="500" r="5" fill="none" stroke="rgba(0,102,255,0.5)" stroke-width="1.5"/>
+      <circle cx="720" cy="500" r="3" fill="rgba(0,102,255,0.4)"/>
+    </svg>
+  </div>
 
   <!-- greeting -->
   <div
@@ -45,7 +64,7 @@
 
     <!-- badge -->
     <div class="badge flex items-center gap-2 px-3 py-1 rounded-full mb-8 text-xs font-medium tracking-wide">
-      <span class="w-1.5 h-1.5 rounded-full" style="background: rgba(255,255,255,0.25);"></span>
+      <span class="w-1.5 h-1.5 rounded-full" style="background: #0066FF; box-shadow: 0 0 6px rgba(0,102,255,0.8);"></span>
       Community Platform
     </div>
 
@@ -55,7 +74,7 @@
       style="font-size: clamp(2.8rem, 7vw, 5.5rem); color: #eef0f8; letter-spacing: -0.04em; max-width: 820px;"
     >
       The platform where your<br/>
-      <span style="color: #9ca3af;">community finds its home.</span>
+      <span style="color: #6ea8fe;">community finds its home.</span>
     </h1>
 
     <!-- sub -->
@@ -84,7 +103,7 @@
   >
     <div class="scroll-line"></div>
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="bounce-arrow">
-      <path d="M1 4L6 9L11 4" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M1 4L6 9L11 4" stroke="rgba(0,102,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   </div>
 
@@ -92,30 +111,32 @@
 
 <style>
   .badge {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
-    color: #5a6070;
+    background: rgba(0,102,255,0.08);
+    border: 1px solid rgba(0,102,255,0.2);
+    color: #6ea8fe;
   }
   .cta-primary {
-    background: rgba(255,255,255,0.09);
-    color: #d1d5db;
-    border: 1px solid rgba(255,255,255,0.12);
+    background: #0066FF;
+    color: #fff;
+    border: 1px solid rgba(0,102,255,0.4);
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 0 20px rgba(0,102,255,0.35);
+  }
+  .cta-primary:hover {
+    background: #1a74ff;
+    box-shadow: 0 0 30px rgba(0,102,255,0.55);
+  }
+  .cta-ghost {
+    color: #4b5263;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.07);
     cursor: pointer;
     transition: all 0.2s;
   }
-  .cta-primary:hover {
-    background: rgba(255,255,255,0.14);
-    border-color: rgba(255,255,255,0.18);
-  }
-  .cta-ghost {
-    color: #3d4452;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    transition: color 0.2s;
-  }
   .cta-ghost:hover {
-    color: #6b7280;
+    color: #9ca3af;
+    border-color: rgba(255,255,255,0.12);
   }
   .greeting-hidden { opacity: 0; transform: translateY(12px); }
   .greeting-visible { opacity: 1; transform: translateY(0); }
@@ -124,7 +145,7 @@
   .scroll-line {
     width: 1px;
     height: 44px;
-    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);
+    background: linear-gradient(to bottom, transparent, rgba(0,102,255,0.4), transparent);
     animation: scrollPulse 2s ease-in-out infinite;
   }
   @keyframes wave {
@@ -145,6 +166,6 @@
     50%  { opacity: 1; transform: scaleY(1); }
     100% { opacity: 0; transform: scaleY(0.2); }
   }
-  .wave-hand { animation: wave 2s ease-in-out 0.3s 1; transform-origin: 70% 80%; }
+  .wave-hand  { animation: wave 2s ease-in-out 0.3s 1; transform-origin: 70% 80%; }
   .bounce-arrow { animation: bounceDown 1.8s ease-in-out infinite; }
 </style>

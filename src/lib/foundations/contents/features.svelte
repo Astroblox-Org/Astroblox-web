@@ -1,161 +1,118 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 <script>
-  import { onMount } from 'svelte';
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  let currentIndex = 0;
-  let paused = false;
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  /**
-     * @type {string | number | NodeJS.Timeout | undefined}
-     */
-  let intervalId;
-
   const features = [
-    { title: 'Real-time Messaging', desc: 'Lightning fast messages across all your channels with zero lag.', icon: '💬' },
-    { title: 'Voice & Video Rooms', desc: 'Drop into a room instantly — no links, no scheduling.', icon: '🎙️' },
-    { title: 'Roles & Permissions', desc: 'Full control over who sees what in your community.', icon: '🛡️' },
-    { title: 'Organized Channels', desc: 'Categories, threads and pins keep every conversation in place.', icon: '🗂️' },
+    {
+      title: 'Real-time Messaging',
+      desc: 'Lightning fast messages across all your channels with zero lag.',
+    },
+    {
+      title: 'Voice & Video Rooms',
+      desc: 'Drop into a room instantly — no links, no scheduling needed.',
+    },
+    {
+      title: 'Roles & Permissions',
+      desc: 'Full control over who sees what inside your community.',
+    },
+    {
+      title: 'Organized Channels',
+      desc: 'Categories, threads and pins keep every conversation in place.',
+    },
+    {
+      title: 'Notifications',
+      desc: 'Stay in the loop with smart alerts that never overwhelm you.',
+    },
+    {
+      title: 'Member Insights',
+      desc: 'Understand your community with activity trends and engagement data.',
+    },
   ];
-
-  const next = () => { currentIndex = (currentIndex + 1) % features.length; };
-  const prev = () => { currentIndex = (currentIndex - 1 + features.length) % features.length; };
-  const goTo = (/** @type {number} */ i) => { currentIndex = i; resetInterval(); };
-
-  const resetInterval = () => {
-    clearInterval(intervalId);
-    if (!paused) startInterval();
-  };
-
-  const startInterval = () => { intervalId = setInterval(next, 3200); };
-
-  onMount(() => {
-    startInterval();
-    return () => clearInterval(intervalId);
-  });
-
-  const handleMouseEnter = () => { paused = true; clearInterval(intervalId); };
-  const handleMouseLeave = () => { paused = false; startInterval(); };
 </script>
 
-<section class="relative flex flex-col items-center py-28 px-6 overflow-hidden"
-  style="background: #08090c;">
+<section class="relative py-28 px-12 overflow-hidden" style="background: #08090c;">
 
+  <!-- bg glow -->
   <div class="absolute inset-0 pointer-events-none"
-    style="background: radial-gradient(ellipse 60% 40% at 50% 60%, rgba(255,255,255,0.02) 0%, transparent 70%);">
+    style="background: radial-gradient(ellipse 60% 40% at 50% 60%, rgba(0,102,255,0.07) 0%, transparent 70%);">
   </div>
 
   <!-- heading -->
-  <div class="relative z-10 text-center mb-16">
-    <p class="text-xs font-bold tracking-widest uppercase mb-3" style="color: #4b5263; letter-spacing: 0.15em;">
-      What we offer
+  <div class="relative z-10 mb-16 max-w-5xl mx-auto">
+    <p class="text-xs font-bold tracking-widest uppercase mb-3" style="color: #3a5080; letter-spacing: 0.15em;">
+      Platform features
     </p>
-    <h2 class="text-4xl font-black tracking-tight" style="color: #eef0f8; letter-spacing: -0.03em;">
-      Everything in one place
-    </h2>
-  </div>
-
-  <!-- device frame -->
-  <div
-    class="relative z-10 w-full max-w-2xl"
-    role="region"
-    aria-label="Feature showcase"
-    on:mouseenter={handleMouseEnter}
-    on:mouseleave={handleMouseLeave}
-  >
-    <div class="relative rounded-2xl overflow-hidden"
-      style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 30px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);">
-
-      <!-- top bar -->
-      <div class="flex items-center gap-2 px-5 py-3"
-        style="background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.05);">
-        <span class="w-2.5 h-2.5 rounded-full" style="background: rgba(255,255,255,0.08);"></span>
-        <span class="w-2.5 h-2.5 rounded-full" style="background: rgba(255,255,255,0.08);"></span>
-        <span class="w-2.5 h-2.5 rounded-full" style="background: rgba(255,255,255,0.15);"></span>
-        <span class="ml-auto text-xs" style="color: rgba(255,255,255,0.12); font-family: monospace;">astroblox.app</span>
-      </div>
-
-      <!-- screen -->
-      <div class="relative overflow-hidden" style="height: 320px; background: rgba(8,9,12,0.6);">
-        <div
-          class="flex h-full transition-transform duration-500 ease-in-out"
-          style="width: {features.length * 100}%; transform: translateX(-{(currentIndex / features.length) * 100}%);">
-          {#each features as feat (feat.title)}
-            <div class="flex flex-col items-center justify-center gap-5 px-12 text-center"
-              style="width: {100 / features.length}%;">
-              <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
-                style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
-                {feat.icon}
-              </div>
-              <div>
-                <h3 class="text-xl font-bold mb-2" style="color: #eef0f8;">{feat.title}</h3>
-                <p class="text-sm font-light leading-relaxed" style="color: #4b5263; max-width: 320px;">{feat.desc}</p>
-              </div>
-            </div>
-          {/each}
+    <div class="flex items-end justify-between">
+      <h2 class="text-4xl font-black tracking-tight" style="color: #eef0f8; letter-spacing: -0.03em; max-width: 480px;">
+        Take control of your <span style="color: #6ea8fe;">community</span>
+      </h2>
+      <div class="flex items-center gap-3 mb-2">
+        <div style="width: 120px; height: 1px; background: repeating-linear-gradient(90deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 4px, transparent 4px, transparent 12px);"></div>
+        <div class="w-4 h-4 rounded-full flex items-center justify-center" style="border: 1.5px solid rgba(0,102,255,0.5);">
+          <div class="w-1.5 h-1.5 rounded-full" style="background: #0066FF;"></div>
         </div>
-        <div class="absolute top-0 left-0 h-full w-16 pointer-events-none"
-          style="background: linear-gradient(to right, rgba(8,9,12,0.7), transparent);"></div>
-        <div class="absolute top-0 right-0 h-full w-16 pointer-events-none"
-          style="background: linear-gradient(to left, rgba(8,9,12,0.7), transparent);"></div>
-      </div>
-
-      <!-- bottom bar -->
-      <div class="flex items-center justify-center gap-4 py-4"
-        style="background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.05);">
-        <button
-          on:click={() => { prev(); resetInterval(); }}
-          class="nav-btn w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 border-0 cursor-pointer"
-          aria-label="Previous feature">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M8 2L4 6L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-
-        <div class="flex items-center gap-2">
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          {#each features as _, i (i)}
-            <button
-              on:click={() => goTo(i)}
-              aria-label="Go to feature {i + 1}"
-              class="rounded-full transition-all duration-300 border-0 cursor-pointer p-0 dot-btn"
-              class:dot-active={currentIndex === i}
-              style="width: {currentIndex === i ? '20px' : '6px'}; height: 6px;">
-            </button>
-          {/each}
-        </div>
-
-        <button
-          on:click={() => { next(); resetInterval(); }}
-          class="nav-btn w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 border-0 cursor-pointer"
-          aria-label="Next feature">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M4 2L8 6L4 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
       </div>
     </div>
+    <p class="text-sm font-light mt-3" style="color: #4b5263; line-height: 1.8; max-width: 480px;">
+      Everything your community needs to chat, connect and grow — all in one place.
+    </p>
+  </div>
 
-    <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-8 pointer-events-none"
-      style="background: rgba(255,255,255,0.04); filter: blur(20px); border-radius: 50%;"></div>
+  <!-- grid -->
+  <div class="relative z-10 max-w-5xl mx-auto grid grid-cols-3 gap-6">
+    {#each features as feat (feat.title)}
+      <div class="feature-card flex flex-col gap-3 p-5 rounded-xl">
+
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+          style="background: rgba(0,102,255,0.1); border: 1px solid rgba(0,102,255,0.2);">
+          {#if feat.title === 'Real-time Messaging'}
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <path d="M2 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6l-4 3V5z" stroke="#6ea8fe" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M6 8h8M6 11h5" stroke="#6ea8fe" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          {:else if feat.title === 'Voice & Video Rooms'}
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <rect x="2" y="5" width="11" height="10" rx="2" stroke="#6ea8fe" stroke-width="1.5"/>
+              <path d="M13 8l5-3v9l-5-3V8z" stroke="#6ea8fe" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          {:else if feat.title === 'Roles & Permissions'}
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.5l-4.9 2.7.9-5.5L2 7.8l5.5-.8L10 2z" stroke="#6ea8fe" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          {:else if feat.title === 'Organized Channels'}
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <path d="M3 5h14M3 10h14M3 15h8" stroke="#6ea8fe" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="16" cy="15" r="2.5" stroke="#6ea8fe" stroke-width="1.5"/>
+            </svg>
+          {:else if feat.title === 'Notifications'}
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <path d="M10 2a6 6 0 0 0-6 6v3l-1.5 2.5h15L16 11V8a6 6 0 0 0-6-6z" stroke="#6ea8fe" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M8.5 16.5a1.5 1.5 0 0 0 3 0" stroke="#6ea8fe" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          {:else}
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <path d="M3 15l4-5 3 3 3-6 4 8" stroke="#6ea8fe" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          {/if}
+        </div>
+
+        <div>
+          <h3 class="text-sm font-bold mb-1" style="color: #d1d5db;">{feat.title}</h3>
+          <p class="text-xs font-light leading-relaxed" style="color: #4b5263;">{feat.desc}</p>
+        </div>
+
+      </div>
+    {/each}
   </div>
 
 </section>
 
 <style>
-  .nav-btn {
-    background: rgba(255,255,255,0.04);
-    color: #4b5263;
+  .feature-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.2s;
   }
-  .nav-btn:hover {
-    background: rgba(255,255,255,0.09);
-  }
-  .dot-btn {
-    background: rgba(255,255,255,0.12);
-  }
-  .dot-active {
-    background: rgba(255,255,255,0.5) !important;
+  .feature-card:hover {
+    background: rgba(0,102,255,0.05);
+    border-color: rgba(0,102,255,0.2);
+    transform: translateY(-2px);
   }
 </style>
