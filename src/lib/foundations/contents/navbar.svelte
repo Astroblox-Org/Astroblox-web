@@ -1,8 +1,8 @@
 <script>
   import { onMount } from 'svelte';
 
-  let scrolled = $state(false);
-  let activeItem = $state('Home');
+  let scrolled = false;
+  let activeItem = 'Home';
 
   const navItems = ['Home', 'Features', 'Community', 'Pricing'];
 
@@ -13,49 +13,31 @@
   });
 </script>
 
-<header class="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 transition-all duration-300">
+<header class="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
   <nav
-    class="flex items-center justify-between px-5 transition-all duration-300
-           {scrolled ? 'py-2.5 w-[85%]' : 'py-3 w-[90%]'}"
-    style="
-      background: {scrolled ? 'rgba(10,10,14,0.92)' : 'rgba(10,10,14,0.75)'};
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 9999px;
-      box-shadow: {scrolled ? '0 8px 32px rgba(0,0,0,0.4)' : '0 4px 16px rgba(0,0,0,0.2)'};
-    "
+    class="flex items-center justify-between px-5 transition-all duration-300 {scrolled ? 'py-2.5 w-[85%]' : 'py-3 w-[90%]'}"
+    style="background: {scrolled ? 'rgba(12,12,16,0.93)' : 'rgba(12,12,16,0.72)'}; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.06); border-radius: 9999px; box-shadow: {scrolled ? '0 8px 32px rgba(0,0,0,0.5)' : '0 4px 16px rgba(0,0,0,0.25)'};"
   >
 
-    <!-- LEFT — Logo -->
-    <a href="/" class="flex items-center gap-2 no-underline shrink-0">
-      <div
-        class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
-        style="background: #0066FF; box-shadow: 0 0 14px rgba(0,102,255,0.45);">
+    <!-- logo -->
+    <div class="flex items-center gap-2 shrink-0">
+      <div class="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.12);">
         <span class="text-white font-black text-xs">A</span>
       </div>
-      <span class="font-bold text-sm tracking-tight" style="color: #e8eaf0;">
-        Astroblox
-      </span>
-    </a>
+      <span class="font-semibold text-sm tracking-tight" style="color: #c9cdd6;">Astroblox</span>
+    </div>
 
-    <!-- CENTER — Nav items -->
-    <ul class="flex items-center gap-1 list-none m-0 p-0">
-      {#each navItems as item}
+    <!-- nav items -->
+    <ul class="flex items-center gap-0.5 list-none m-0 p-0">
+      {#each navItems as item (item)}
         <li>
           <button
-            onclick={() => activeItem = item}
-            class="relative px-4 py-1.5 rounded-full text-sm font-medium
-                   transition-all duration-200 border-0 cursor-pointer"
-            style="
-              background: {activeItem === item ? 'rgba(0,102,255,0.15)' : 'transparent'};
-              color: {activeItem === item ? '#0066FF' : '#6b7280'};
-              outline: none;
-            "
+            on:click={() => activeItem = item}
+            class="relative px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border-0 cursor-pointer outline-none"
+            style="background: {activeItem === item ? 'rgba(255,255,255,0.07)' : 'transparent'}; color: {activeItem === item ? '#d1d5db' : '#4b5260'};"
           >
             {#if activeItem === item}
-              <span class="absolute inset-0 rounded-full"
-                style="border: 1px solid rgba(0,102,255,0.3);"></span>
+              <span class="absolute inset-0 rounded-full pointer-events-none" style="border: 1px solid rgba(255,255,255,0.1);"></span>
             {/if}
             {item}
           </button>
@@ -63,23 +45,39 @@
       {/each}
     </ul>
 
-    <!-- RIGHT — CTA buttons -->
+    <!-- cta -->
     <div class="flex items-center gap-2 shrink-0">
-      <a href="/login"
-        class="px-4 py-1.5 rounded-full text-sm font-medium no-underline transition-all duration-200"
-        style="color: #9ca3af; background: transparent;"
-        onmouseenter={(e) => e.currentTarget.style.color = '#e8eaf0'}
-        onmouseleave={(e) => e.currentTarget.style.color = '#9ca3af'}>
+      <button class="login-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200">
         Log in
-      </a>
-      <a href="/register"
-        class="px-4 py-1.5 rounded-full text-sm font-semibold no-underline transition-all duration-200"
-        style="background: #0066FF; color: #fff; box-shadow: 0 0 16px rgba(0,102,255,0.35);"
-        onmouseenter={(e) => { e.currentTarget.style.background='#1a7aff'; e.currentTarget.style.boxShadow='0 0 22px rgba(0,102,255,0.55)'; }}
-        onmouseleave={(e) => { e.currentTarget.style.background='#0066FF'; e.currentTarget.style.boxShadow='0 0 16px rgba(0,102,255,0.35)'; }}>
+      </button>
+      <button class="register-btn px-4 py-1.5 rounded-full text-sm font-semibold transition-all duration-200">
         Get started
-      </a>
+      </button>
     </div>
 
   </nav>
 </header>
+
+<style>
+  .login-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #4b5260;
+    transition: color 0.2s;
+  }
+  .login-btn:hover {
+    color: #9ca3af;
+  }
+  .register-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: #c9cdd6;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .register-btn:hover {
+    background: rgba(255, 255, 255, 0.13);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+</style>
